@@ -1,0 +1,43 @@
+.scene-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.scene-bg__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+}
+
+.scene-bg__img--prev {
+  z-index: 0;
+}
+
+.scene-bg__vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(ellipse at center,
+      transparent 40%,
+      rgba(0, 0, 0, 0.35) 100%);
+  pointer-events: none;
+}
+
+.scene-bg__ground-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 35%;
+  z-index: 2;
+  background: linear-gradient(to top,
+      rgba(30, 25, 15, 0.7) 0%,
+      rgba(30, 25, 15, 0.3) 40%,
+      transparent 100%);
+  pointer-events: none;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Salary Story — Data 557</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Fraunces:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#0a0a0f; --card:rgba(255,255,255,0.06); --border:rgba(255,255,255,0.08); --text:#f0eeeb; --text-soft:#a8a6a3; --male:#5a8fb4; --female:#e07a5f; --accent:#e8b923; --male-dim:rgba(90,143,180,0.2); --female-dim:rgba(224,122,95,0.2); }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 2rem; }
+    .wrap { max-width: 560px; margin: 0 auto; }
+    h1 { font-family: 'Fraunces', serif; font-size: 1.75rem; margin-bottom: 0.5rem; }
+    .sub { color: var(--text-soft); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .bubble { padding: 1.2rem 1.5rem; background: var(--card); border-radius: 16px; border: 1px solid var(--border); margin-bottom: 1rem; min-height: 80px; }
+    .bubble.alex { border-left: 4px solid var(--male); }
+    .bubble.sam { border-left: 4px solid var(--female); }
+    .speaker { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+    .bubble.alex .speaker { color: var(--male); }
+    .bubble.sam .speaker { color: var(--female); }
+    .line { font-size: 1rem; line-height: 1.55; }
+    .line .stat { background: var(--male-dim); color: #7eb3d4; padding: 0.1em 0.4em; border-radius: 4px; font-weight: 600; }
+    .bubble.sam .line .stat { background: var(--female-dim); color: #e99a82; }
+    .nav { display: flex; gap: 0.5rem; margin-top: 1rem; }
+    .btn { font: inherit; font-weight: 600; padding: 0.6rem 1.2rem; border: none; border-radius: 10px; cursor: pointer; background: var(--card); color: var(--text); border: 1px solid var(--border); }
+    .btn.primary { background: linear-gradient(135deg, #d4a520, #b8921f); color: #0a0a0f; }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .hint { margin-top: 1.5rem; padding: 1rem; background: rgba(232,185,35,0.1); border-radius: 10px; font-size: 0.85rem; color: var(--text-soft); }
+    .hint a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>The Salary Story</h1>
+    <p class="sub">Milestone 2 — Faculty data, two friends, and what the numbers say</p>
+    <div class="bubble" id="bubble">
+      <div class="speaker" id="speaker">Alex</div>
+      <div class="line" id="line"></div>
+    </div>
+    <div class="nav">
+      <button type="button" class="btn" id="prev">← Previous</button>
+      <button type="button" class="btn primary" id="next">Next →</button>
+    </div>
+    <p class="hint">This is the standalone version (works when opened as a file). For the full animated version with moving characters and typewriter dialogue, run <code>npm run dev</code> and open <a href="http://localhost:5173">http://localhost:5173</a>.</p>
+  </div>
+  <script>
+    var script = [
+      { who: 'alex', text: 'Hey Sam! I\'ve been digging into that faculty salary dataset — almost <span class="stat">19,792</span> faculty records. Want the highlights?' },
+      { who: 'sam', text: 'Yes! Start with something juicy.' },
+      { who: 'alex', text: 'First: <strong>academic field</strong>. We\'ve got Arts, Other, and Prof. Most people are in Other (<span class="stat">66.4%</span>), then Prof (<span class="stat">19.2%</span>), then Arts (<span class="stat">14.3%</span>).' },
+      { who: 'sam', text: 'And by gender?' },
+      { who: 'alex', text: 'Women were <span class="stat">20.4%</span> Arts, <span class="stat">69.7%</span> Other, <span class="stat">9.9%</span> Prof. Men: <span class="stat">12.8%</span> Arts, <span class="stat">65.6%</span> Other, <span class="stat">21.6%</span> Prof. Chi-square says that\'s not random — <span class="stat">p &lt; 2.2e-16</span>. Field and sex are definitely associated.' },
+      { who: 'sam', text: 'So men are more in Prof, women more in Arts and Other. What about when they got their degree?' },
+      { who: 'alex', text: 'Women got their highest degree <em>later</em> on average: mean <span class="stat">1981</span> vs <span class="stat">1974</span> for men. Welch t-test: <span class="stat">t ≈ -13.13</span>, p tiny. So female faculty are from more recent cohorts.' },
+      { who: 'sam', text: 'And hiring year?' },
+      { who: 'alex', text: 'Same pattern. Women hired about <span class="stat">5–6 years</span> later on average (mean hire year <span class="stat">1980</span> vs <span class="stat">1975</span>). Again, huge t, p &lt; 2.2e-16. So less seniority on average.' },
+      { who: 'sam', text: 'Rank in 1995?' },
+      { who: 'alex', text: 'In 1995, way more men were Full profs (<span class="stat">60.5%</span> vs <span class="stat">30.8%</span> women). Women were more Assistant (<span class="stat">35.5%</span>) and Associate (<span class="stat">33.7%</span>). Chi-square on rank × sex: <span class="stat">χ² ≈ 127.9</span>, p &lt; 2.2e-16.' },
+      { who: 'sam', text: 'And the money?' },
+      { who: 'alex', text: 'In 1995, mean monthly salary: women <span class="stat">$5,397</span>, men <span class="stat">$6,732</span>. Welch t-test says the gap is real — about <span class="stat">$1,148–$1,521</span> less per month for women. So yes, a salary gap, and it lines up with field, seniority, and rank.' },
+      { who: 'sam', text: 'So it\'s not "just" gender — field, when you got your degree, when you were hired, and rank all matter for pay.' },
+      { who: 'alex', text: 'Exactly. Milestone 2 says we should interpret the gender gap in compensation with those factors in mind. Want to dig into regression next?' }
+    ];
+    var step = 0;
+    var bubble = document.getElementById('bubble');
+    var speakerEl = document.getElementById('speaker');
+    var lineEl = document.getElementById('line');
+    function show() {
+      var s = script[step];
+      bubble.className = 'bubble ' + s.who;
+      speakerEl.textContent = s.who === 'alex' ? 'Alex' : 'Sam';
+      lineEl.innerHTML = s.text;
+      document.getElementById('prev').disabled = step === 0;
+      document.getElementById('next').disabled = step === script.length - 1;
+    }
+    document.getElementById('prev').onclick = function() { if (step > 0) { step--; show(); } };
+    document.getElementById('next').onclick = function() { if (step < script.length - 1) { step++; show(); } };
+    show();
+  </script>
+</body>
+</html>
