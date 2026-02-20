@@ -109,8 +109,8 @@ export default function App() {
             Milestone 2 — Faculty data, two friends, and what the numbers say
           </p>
           <div className="hero-characters">
-            <img src="/characters/panda.png" alt="Alex the Panda" className="hero-char hero-char--alex" />
-            <img src="/characters/polarbear.png" alt="Sam the Polar Bear" className="hero-char hero-char--sam" />
+            <img src={`${BASE}characters/panda.png`} alt="Alex the Panda" className="hero-char hero-char--alex" />
+            <img src={`${BASE}characters/polarbear.png`} alt="Sam the Polar Bear" className="hero-char hero-char--sam" />
           </div>
           <div className="scroll-hint">
             <span>Scroll down to start the story</span>
@@ -168,8 +168,8 @@ export default function App() {
       <section className="ending">
         <div className="ending-content">
           <div className="ending-characters">
-            <img src="/characters/panda.png" alt="Alex" className="ending-char ending-char--alex" />
-            <img src="/characters/polarbear.png" alt="Sam" className="ending-char ending-char--sam" />
+            <img src={`${BASE}characters/panda.png`} alt="Alex" className="ending-char ending-char--alex" />
+            <img src={`${BASE}characters/polarbear.png`} alt="Sam" className="ending-char ending-char--sam" />
           </div>
           <h2>The End</h2>
           <p>Thanks for scrolling through our data story!</p>
