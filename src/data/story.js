@@ -1,8 +1,10 @@
+const BASE = import.meta.env.BASE_URL;
+
 export const scenes = [
   {
     id: 'gate',
     title: 'The Haunted Entrance',
-    bg: '/backgrounds/gate.png',
+    bg: `${BASE}backgrounds/gate.png`,
     lines: [
       { who: 'alex', text: "It's a beautiful day to look at some data! But why does the air feel so... cold?" },
       { who: 'sam', text: "Perhaps because you're standing right through my spectral ribs, child." },
@@ -13,7 +15,7 @@ export const scenes = [
   {
     id: 'lawn',
     title: 'The Statistical Field',
-    bg: '/backgrounds/lawn.png',
+    bg: `${BASE}backgrounds/lawn.png`,
     lines: [
       { who: 'alex', text: 'I was just looking at the fields. Most faculty are in "Other" (**66.4%**), then Professional (**19.2%**), and Arts (**14.3%**).' },
       { who: 'sam', text: "Look closer at the gender divide. In my day, men dominated Professional fields at **21.6%**, while women were often in Arts and Other." },
@@ -23,7 +25,7 @@ export const scenes = [
   {
     id: 'path',
     title: 'Echoes of the Past',
-    bg: '/backgrounds/path.png',
+    bg: `${BASE}backgrounds/path.png`,
     lines: [
       { who: 'alex', text: "Even the hiring years are strange. On average, women were hired much later — mean year **1980** vs **1975** for men." },
       { who: 'sam', text: 'We called it the "seniority gap." The Welch t-test doesn\'t lie: **t ≈ -13.13**.' },
@@ -33,7 +35,7 @@ export const scenes = [
   {
     id: 'building',
     title: 'The Glass Ceiling',
-    bg: '/backgrounds/building.png',
+    bg: `${BASE}backgrounds/building.png`,
     lines: [
       { who: 'sam', text: "Look at the 1995 ranks. Over **60%** of men were Full Professors. For women? Barely **30.8%**." },
       { who: 'alex', text: "The pay gap is huge. Mean monthly salary for women was **$5,397**, but for men it was **$6,732**. That's over **$1,300** difference!" },
@@ -43,7 +45,7 @@ export const scenes = [
   {
     id: 'bench',
     title: 'A New Beginning',
-    bg: '/backgrounds/bench.png',
+    bg: `${BASE}backgrounds/bench.png`,
     lines: [
       { who: 'alex', text: "So to truly understand the gap, we have to look at the whole history, not just the final number." },
       { who: 'sam', text: "Precisely. Now, shall we move on to the regression? I haven't felt this much statistical power in decades." },

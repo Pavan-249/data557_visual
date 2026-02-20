@@ -7,9 +7,10 @@ import './App.css';
 gsap.registerPlugin(ScrollTrigger);
 
 /* ── Characters config ── */
+const BASE = import.meta.env.BASE_URL;
 const CHARACTERS = {
-  alex: { name: 'Alex 🐼', img: '/characters/panda.png', color: '#4a9e6e', bg: 'rgba(74, 158, 110, 0.12)' },
-  sam: { name: 'Sam 🐻‍❄️', img: '/characters/polarbear.png', color: '#7eb8da', bg: 'rgba(126, 184, 218, 0.12)' },
+  alex: { name: 'Alex 🐼', img: `${BASE}characters/panda.png`, color: '#4a9e6e', bg: 'rgba(74, 158, 110, 0.12)' },
+  sam: { name: 'Sam 🐻‍❄️', img: `${BASE}characters/polarbear.png`, color: '#7eb8da', bg: 'rgba(126, 184, 218, 0.12)' },
 };
 
 export default function App() {
